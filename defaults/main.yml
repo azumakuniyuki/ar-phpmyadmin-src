@@ -15,12 +15,4 @@ phpmyadmin:
   conf:
     language: "ja"
     secret: ""
-  user: 
-    username: "webmaster"
-    uid:      800
-    gid:      800
-    home:     "/var/www"
-    group:    "webmaster"
-    shell:    "/bin/bash"
-    comment:  "'Memcached daemon'"
 
