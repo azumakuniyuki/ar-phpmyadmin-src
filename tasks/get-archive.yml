@@ -1,0 +1,20 @@
+---
+#        _           __  __          _       _           _        __          __     ___            _        
+#  _ __ | |__  _ __ |  \/  |_   _   / \   __| |_ __ ___ (_)_ __  / /__ _ __ __\ \   / / |_ __ _ ___| | _____ 
+# | '_ \| '_ \| '_ \| |\/| | | | | / _ \ / _` | '_ ` _ \| | '_ \| / __| '__/ __| | / /| __/ _` / __| |/ / __|
+# | |_) | | | | |_) | |  | | |_| |/ ___ \ (_| | | | | | | | | | | \__ \ | | (__| |/ / | || (_| \__ \   <\__ \
+# | .__/|_| |_| .__/|_|  |_|\__, /_/   \_\__,_|_| |_| |_|_|_| |_| |___/_|  \___| /_/   \__\__,_|___/_|\_\___/
+# |_|         |_|           |___/                                \_\          /_/                            
+# install-pkg
+- name: get-archive | phpMyAdmin archive should be downloaded
+  get_url:
+    url:  "https://files.phpmyadmin.net/phpMyAdmin/{{ phpmyadmin.version }}/phpMyAdmin-{{ phpmyadmin.version }}-all-languages.zip"
+    dest: "{{ phpmyadmin.workingdir }}/phpMyAdmin-{{ phpmyadmin.version }}-all-languages.zip"
+
+- name: get-archive | phpMyAdmin archive should be extracted
+  unarchive:
+    src:     "{{ phpmyadmin.workingdir }}/phpMyAdmin-{{ phpmyadmin.version }}-all-languages.zip"
+    dest:    "{{ phpmyadmin.workingdir }}"
+    copy:    "no"
+    creates: "{{ phpmyadmin.workingdir }}/phpMyAdmin-{{ phpmyadmin.version }}-all-languages"
+

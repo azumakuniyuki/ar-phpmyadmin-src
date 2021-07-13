@@ -1,0 +1,26 @@
+---
+#        _           __  __          _       _           _        __          __     __  _       __             _ _       
+#  _ __ | |__  _ __ |  \/  |_   _   / \   __| |_ __ ___ (_)_ __  / /__ _ __ __\ \   / /_| | ___ / _| __ _ _   _| | |_ ___ 
+# | '_ \| '_ \| '_ \| |\/| | | | | / _ \ / _` | '_ ` _ \| | '_ \| / __| '__/ __| | / / _` |/ _ \ |_ / _` | | | | | __/ __|
+# | |_) | | | | |_) | |  | | |_| |/ ___ \ (_| | | | | | | | | | | \__ \ | | (__| |/ / (_| |  __/  _| (_| | |_| | | |_\__ \
+# | .__/|_| |_| .__/|_|  |_|\__, /_/   \_\__,_|_| |_| |_|_|_| |_| |___/_|  \___| /_/ \__,_|\___|_|  \__,_|\__,_|_|\__|___/
+# |_|         |_|           |___/                                \_\          /_/                                         
+# defaults file for ar-phpmyadmin-src
+phpmyadmin:
+  name: "phpMyAdmin"
+  version: "5.1.1"
+  workingdir:  "/usr/local/src"
+  destination: "/var/www"
+  symlinkfrom: "/home/neko/pma"
+  conf:
+    language: "ja"
+    secret: ""
+  user: 
+    username: "webmaster"
+    uid:      800
+    gid:      800
+    home:     "/var/www"
+    group:    "webmaster"
+    shell:    "/bin/bash"
+    comment:  "'Memcached daemon'"
+

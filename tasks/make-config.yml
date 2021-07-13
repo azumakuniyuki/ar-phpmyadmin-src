@@ -1,0 +1,29 @@
+---
+#        _           __  __          _       _           _        __          __     ___            _        
+#  _ __ | |__  _ __ |  \/  |_   _   / \   __| |_ __ ___ (_)_ __  / /__ _ __ __\ \   / / |_ __ _ ___| | _____ 
+# | '_ \| '_ \| '_ \| |\/| | | | | / _ \ / _` | '_ ` _ \| | '_ \| / __| '__/ __| | / /| __/ _` / __| |/ / __|
+# | |_) | | | | |_) | |  | | |_| |/ ___ \ (_| | | | | | | | | | | \__ \ | | (__| |/ / | || (_| \__ \   <\__ \
+# | .__/|_| |_| .__/|_|  |_|\__, /_/   \_\__,_|_| |_| |_|_|_| |_| |___/_|  \___| /_/   \__\__,_|___/_|\_\___/
+# |_|         |_|           |___/                                \_\          /_/                            
+# make-config
+- name: make-config | phpMyAdmin should be copied to the destination directory
+  shell: >
+    /bin/cp -vRp ./phpMyAdmin-{{ phpmyadmin.version }}-all-languages {{ phpmyadmin.destination }}/{{ phpmyadmin.name }}
+  args:
+    chdir: "{{ phpmyadmin.workingdir }}"
+    creates: "{{ phpmyadmin.destination }}/{{ phpmyadmin.name }}"
+
+- name: make-config | config.inc.php should be deployed
+  template:
+    src:   "var/www/config.inc.php.j2"
+    dest:  "{{ phpmyadmin.destination }}/{{ phpmyadmin.name }}/config.inc.php"
+    mode:  "0755"
+    owner: "root"
+    group: "root"
+
+- name: make-config | Symbolic link to phpMyAdmin should be created
+  file:
+    src:   "{{ phpmyadmin.destination }}/{{ phpmyadmin.name }}"
+    dest:  "{{ phpmyadmin.symlinkfrom }}"
+    state: "link"
+
